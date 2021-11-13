@@ -25,13 +25,11 @@ for(let i = 0; i < categories.length; i++){
 
 console.log(category + " " + max);
 
-let reverseString = function(str) {
-    let strArray = str.split("");
-    strArray.reverse();
-    return strArray.join("");
+
+//Q2
+for(let job in jobs){   //loops through every category and removes the repeats
+    let city = jobs[job].title.split("()")[0]
 }
-
-
 
 
 
