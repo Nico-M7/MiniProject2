@@ -4,19 +4,26 @@ const jobs = require('./jobs.json');  //stores json file in a variable
 //loop again check how many times each category occurs, print the name of the category that occurs the most and the amount of times
 
 let categories = [];
-
-for(let job in jobs) {
-    for(let category of jobs[job].categories) {
+let repeats = []
+for(let job in jobs){   //loops through every category and removes the repeats
+    for(let category of jobs[job].categories){
         if(!categories.includes(category)){
             categories.push(category);
         }
-    } 
+    }
+    repeats = repeats.concat(jobs[job].categories);
 }
 
-console.log(categories)
+let max = 0;
+let category = "";
+for(let i = 0; i < categories.length; i++){
+    if(repeats.filter(x => x==categories[i]).length > max){
+        max = repeats.filter(x => x==categories[i]).length;
+        category = categories[i];
+    }
+}
 
-let jobsWithCategory = [];
-
+console.log(category + " " + max);
 
 
 
