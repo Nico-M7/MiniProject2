@@ -25,6 +25,13 @@ for(let i = 0; i < categories.length; i++){
 
 console.log(category + " " + max);
 
+let reverseString = function(str) {
+    let strArray = str.split("");
+    strArray.reverse();
+    return strArray.join("");
+}
+
+
 
 
 
