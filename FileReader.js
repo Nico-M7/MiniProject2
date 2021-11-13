@@ -10,19 +10,19 @@ function Category(name){
         occurance++;
     }
 }
-let categories = [];
 
-for(let job in jobs){   //loops through every category 
-    for(let category in jobs.categories){
-        if(categories.name.includes(category)){
-            category.countOccurance;
+let jobCategories = [];
+
+for(let job in jobs) {
+    for(let category of jobs[job].categories) {
+        if(jobCategories.includes(category.name)){
+            jobCategories.category;
         }
         else{
-            
-            categories.push(Category(category));
+            jobCategories.push(category);
         }
-
-    }
-
+    } 
 }
-console.log(categories);
+
+console.log(jobCategories)
+
