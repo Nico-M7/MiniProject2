@@ -16,14 +16,14 @@ for(let job in jobs){   //loops through every category and removes the repeats
 
 let max = 0;
 let category = "";
-for(let i = 0; i < categories.length; i++){
+for(let i = 0; i < categories.length; i++){     //for loop thats calculates the category with the most postings and how many times it occurs
     if(repeats.filter(x => x==categories[i]).length > max){
         max = repeats.filter(x => x==categories[i]).length;
         category = categories[i];
     }
 }
 
-console.log(category + " " + max);
+console.log("Most popular job category is " + category + " and it occurs " + max + " times");   //prints the data
 
 
 //Q2
@@ -50,10 +50,10 @@ let getCities = function(job) { // 5-Michelin Star Gourmet Spaghetti
     }
 }
 
-let citiesWithRepeats = jobsArray.map(getCities);
+let citiesWithRepeats = jobsArray.map(getCities);   //arrays
 let cities = [];
 
-for(let city of citiesWithRepeats) {
+for(let city of citiesWithRepeats) {    //loops through each city and if the city isnt in the array it gets added
     if(!cities.includes(city)) {
         cities.push(city);
     }
@@ -61,7 +61,7 @@ for(let city of citiesWithRepeats) {
 
 let maxCity = 0;
 let cityName = "";
-for(let city of cities) {
+for(let city of cities) {   //for loop that calculates the most popular city category and how many occurences
     let currentCity = citiesWithRepeats.filter(c => {
         if(c == city){
             return c;
@@ -74,18 +74,38 @@ for(let city of cities) {
     }
 }
 
-console.log(cityName + " " + maxCity);
+console.log("The most popular city is " + cityName + " and it occurs in " + maxCity + " job postings");  //prints data
     
-
 //Q3 What is the most popular category in each city?
-
-for(let city of cities) {
+cities.shift();     
+console.log("Most popular category in each city: ");
+for(let city of cities) {   //loops through all cities and filters jobs
     let jobsInCity = jobsArray.filter((job) => {
         if(job.title.includes(city)) {
             return job;
         }
     })
-    console.log(city+" "+jobsInCity.length);
+    
+    let cityCategories = [];
+    let cityCategoryRepeats = [];
+    for(let job of jobsInCity){   //loops through every category and removes the repeats
+        for(let category of job.categories){
+            if(!cityCategories.includes(category)){
+                cityCategories.push(category);
+            }
+        }
+        cityCategoryRepeats = cityCategoryRepeats.concat(job.categories);   
+    }
+    
+    let max2 = 0;
+    let category2 = "";
+    for(let i = 0; i < cityCategories.length; i++){     //calculates the most popular job category in each city
+        if(cityCategoryRepeats.filter(x => x==cityCategories[i]).length > max2){
+            max2 = cityCategoryRepeats.filter(x => x==cityCategories[i]).length;
+            category2 = cityCategories[i];
+        }
+    }
+    console.log("City Name: " + city + "    Most Popular Job Category: " + category2 + "    Number of Occurences: " + max2);    //prints data
 }
 
 
