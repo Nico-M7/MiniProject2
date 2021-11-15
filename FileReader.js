@@ -29,7 +29,7 @@ console.log(category + " " + max);
 //Q2
 const jobsArray = Object.values(jobs) // Converting to array because JSON wont let me use array functions on objects
 
-let getCities = function(job) {
+let getCities = function(job) { // 5-Michelin Star Gourmet Spaghetti
     let jobTitle = job.title.split(/[(,)]+/).reverse();// Splits by "(,)" then reverses cause city is usually near the end of the title
     if(jobTitle.length<=3 && !jobTitle[1].split(/[\s]+/).includes('at')) { //Some things in the data only have 3 elements in those causes city is always the 2nd
         return jobTitle[1];
@@ -59,10 +59,6 @@ for(let city of citiesWithRepeats) {
     }
 }
 
-for(let city of citiesWithRepeats) {
-    console.log(city);
-}
-
 let maxCity = 0;
 let cityName = "";
 for(let city of cities) {
@@ -83,5 +79,16 @@ console.log(cityName + " " + maxCity);
 
 //Q3 What is the most popular category in each city?
 
+for(let city of cities) {
+    let jobsInCity = jobsArray.filter((job) => {
+        if(job.title.includes(city)) {
+            return job;
+        }
+    })
+    console.log(city+" "+jobsInCity.length);
+}
+
+
+ 
 
 
